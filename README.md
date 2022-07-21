@@ -10,3 +10,9 @@ Automatically update statistical values in indicator analysis word docs
 
 - **Notebook** folder for experimental notebooks
 	- *handbook generator.ipynb* notebook for generating first page of EPI analysis with updated statistical values. Codes for caluclating the values and outputs are defined in the notebook
+
+- **Scripts** contains the script formats for automated update of handbook catalouge.
+	- *commons.py* contains the paths for the indicatorData and indicatorMeta datasets. Additionally, paths of the input word docx to be updated and output path generated docx are specified
+	- *enums.py* this script contains the currently defined statistics updates. Whenever, a new statistics needs to be updated, define it here and write the code for calculating it in the statsCalculator function in UpdateText.py
+	- *UpdateText.py* constains the stat calculator and code for updating a properly defined word docx. To update docx, place in word doc/input (or update input path in commons) and run this script. You will be asked the name of the word doc and the year for which you want to calculate the updates
+	- *utlis.py* contains helper functions
