@@ -39,6 +39,24 @@ def statCalculator(code_list):
             data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(SIDS))][[str(year),"Country Code"]].mean()
         elif (requiredStat == stats.aveGlobal.name):
             data = indicatorData[indicatorData["Indicator Code"]==indicator][[str(year),"Country Code"]].mean()
+        elif (requiredStat == stats.minPacific.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(pacificRegion))][[str(year),"Country Code"]].min()
+        elif (requiredStat == stats.maxPacific.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(pacificRegion))][[str(year),"Country Code"]].max()
+        elif (requiredStat == stats.avePacific.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(pacificRegion))][[str(year),"Country Code"]].mean()
+        elif (requiredStat == stats.minCarribean.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(carribeanRegion))][[str(year),"Country Code"]].min()
+        elif (requiredStat == stats.maxCarribean.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(carribeanRegion))][[str(year),"Country Code"]].max()
+        elif (requiredStat == stats.aveCarribean.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(carribeanRegion))][[str(year),"Country Code"]].mean()
+        elif (requiredStat == stats.minAIS.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(aisRegion))][[str(year),"Country Code"]].min()
+        elif (requiredStat == stats.maxAIS.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(aisRegion))][[str(year),"Country Code"]].max()
+        elif (requiredStat == stats.aveAIS.name):
+            data = indicatorData[(indicatorData["Indicator Code"]==indicator)&(indicatorData["Country Code"].isin(aisRegion))][[str(year),"Country Code"]].mean()
         
         # Return required output
         if requiredOutput == outputs.value.name:
@@ -73,6 +91,12 @@ if __name__ == "__main__":
 		# Reading from json file
 		undpSids = json.load(openfile)
 
+	with open(data_path+'region.json', 'r') as openfile:
+  
+		# Reading from json file
+		undpSidsRegion = json.load(openfile)
+
+
 	# Create a list of SIDS iso-3 codes
 	SIDS = [] 
 	for i in undpSids.keys():
@@ -81,6 +105,19 @@ if __name__ == "__main__":
 	# create a dictionary with SIDS iso-3 codes as keys and country names as values
 	sidsNames = {}
 	sidsNames = dict([(value, key) for key, value in undpSids.items()])
+
+	# Create a list of SIDS iso-3 codes by region
+	pacificRegion = []
+	carribeanRegion = []
+	aisRegion = []
+	for i in undpSidsRegion:
+		if i["region"] == "Caribbean":
+			carribeanRegion.append(i["iso"])
+		elif i["region"] == "AIS":
+			aisRegion.append(i["iso"])
+		elif i["region"] == "Pacific":
+			pacificRegion.append(i["iso"])
+    
 
 
 	### Replace coded texts in paragraphs (those between curly brackets according to the enumeration classes)

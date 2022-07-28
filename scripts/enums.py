@@ -8,7 +8,15 @@ class stats(Enum):
     maxGlobal = 'Global maximum'
     aveSids = 'SIDS average'
     aveGlobal = 'Global average'
-    indCount = 'Indicator Count for Dataset'
+    minPacific = 'pacific minimum'
+    maxPacific = 'pacific maximum'
+    avePacific = 'pacific average'
+    minCarribean = 'Carribean minimum'
+    maxCarribean = 'Carribean maximum'
+    aveCarribean = 'Carribean average'
+    minAIS = 'AIS minimum'
+    maxAIS = 'AIS maximum'
+    aveAIS = 'AIS average'
 
 # values that will be inserted into the text
 class outputs(Enum):
