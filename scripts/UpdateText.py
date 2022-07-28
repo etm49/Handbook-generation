@@ -13,8 +13,11 @@ from utlis import get_inputs
 # Define statistic calculating function
 
 def statCalculator(code_list):
+	###
+	#  Calculates the statical values definied in enums.py based on the code_list. E.g.: if {ohi-index,minSids, countryName}, this function returns name of the SIDS country with the minimum value for ohi-index for the given year 
+	# ###
 
-    assert len(code_list) in [1,3], "code length is wrong"
+    assert len(code_list) in [1,3], "code is not properly desigined, should flow format {ohi-index,minSids, countryName} "
     
     # Return year
     if code_list[-1] == outputs.year.name:
